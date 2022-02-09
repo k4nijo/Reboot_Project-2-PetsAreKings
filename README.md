@@ -24,6 +24,7 @@ METHOD | ENDPOINT        | TOKEN | DESCRIPTION                   | POST PARAMS  
 GET    | /user/profile   | YES   | Shows registered user profile |  -                                                               | name, surname, username, pets, location, role, comment, booking, pictures
 PUT    | /user/profile   | YES   | Update user profile           | name, surname, username, email, pets, role                       | updated user data
 DELETE | /user/profile   | YES   | Delete user profile          | password                                                         | confirmation of deleted user
+PUT    | /user/profile/status | YES | Edit status
 
 
 ### User Endpoints
@@ -52,3 +53,4 @@ GET    | /users           | YES   | Finds host and professional by location     
 GET    | /users/:userid   | YES   | Get user profile                | username                                        | user profile
 POST    | /user/pets      | YES   | Create pet profile              | name, specie, sociable, race                    | object with new pet id, name, specie, sociable, race
 PUT    | /user/:petid     | YES   | Update pet profile              | name, specie, sociable, race, picture           | updated pet data
+
