@@ -18,25 +18,7 @@ function authUser (req, res, next) {
 }
 
 
-function authUser(req, res, next) {
-    console.log(res.locals.user)
-    if (res.locals.user?.role === 'admin') {
-      next()
-    } else {
-      res.status(403).json({ error: 'User not authorized, no admin'})
-    }
-  }
 
-/*function  (req, res, next) {
-    if (res.locals.user.role !== '') {
-      res.status(403).json({ error: 'User not authorized'})
-    } else {
-      next()
-    }
-  }*/
   
 
-module.exports = {
-  authUser,
-  checkAdmin,
-}
+module.exports = { authUser }
