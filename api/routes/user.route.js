@@ -5,7 +5,7 @@ const {
   getUserById,
   deleteUserById,
   updateUser
-} = require('../controllers/users.controller')
+} = require('../controllers/user.controller')
 
 router.get('/', getAllUsers)
 router.get('/:id', getUserById)

@@ -1,5 +1,5 @@
 const jwt = require('jsonwebtoken')
-const UserModel = require('../models/users.model')
+const UserModel = require('../models/user.model')
 
 
 function authUser (req, res, next) {
@@ -8,7 +8,6 @@ function authUser (req, res, next) {
   } else {
     jwt.verify(req.headers.token, process.env.SECRET, (err, token) => {
       if (err) { res.status(403).json({ error: 'Token not valid' }) }
-
       UserModel.findOne({ email: token.email })
         .then(user => {
           res.locals.user = user
@@ -19,7 +18,7 @@ function authUser (req, res, next) {
 }
 
 
-function checkAdmin(req, res, next) {
+function authUser(req, res, next) {
     console.log(res.locals.user)
     if (res.locals.user?.role === 'admin') {
       next()
@@ -28,13 +27,13 @@ function checkAdmin(req, res, next) {
     }
   }
 
-function checkTeacher (req, res, next) {
-    if (res.locals.user.role !== 'teacher') {
+/*function  (req, res, next) {
+    if (res.locals.user.role !== '') {
       res.status(403).json({ error: 'User not authorized'})
     } else {
       next()
     }
-  }
+  }*/
   
 
 module.exports = {

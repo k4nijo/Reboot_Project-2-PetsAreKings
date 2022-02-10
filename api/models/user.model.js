@@ -42,7 +42,7 @@ const userSchema = new mongoose.Schema({
     location: {
         type: String
     },
-    pets: [{
+    /*pets: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'pet',
         required: false
@@ -147,7 +147,7 @@ const userSchema = new mongoose.Schema({
             required: true,
             default: false
         }
-      }
+    }*/
 
 })
 
