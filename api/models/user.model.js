@@ -42,12 +42,12 @@ const userSchema = new mongoose.Schema({
     location: {
         type: String
     },
-    /*pets: [{
+    pets: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'pet',
         required: false
     }],
-    comments: [{
+    /*comments: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'comment',
         required: false
