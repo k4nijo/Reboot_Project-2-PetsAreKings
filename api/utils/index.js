@@ -17,8 +17,21 @@ function authUser (req, res, next) {
   }
 }
 
+function checkAdmin (req, res, next) {
+  if (res.locals.user.role !== 'admin') { 
+    res.status(403).json({ error: 'User not authorized'}) 
+  } else {
+    next()
+  }
+}
+
+function checkHostPro (req, res, next) {
+  if (res.locals.user.role !== 'hostPro') { 
+    res.status(403).json({ error: 'User not authorized'}) 
+  } else {
+    next()
+  }
+}
 
 
-  
-
-module.exports = { authUser }
+module.exports = { authUser, checkAdmin, checkHostPro }

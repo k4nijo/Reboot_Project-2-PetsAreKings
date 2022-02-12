@@ -35,7 +35,7 @@ const userSchema = new mongoose.Schema({
     },
     role: {
         type: String,
-        enum: ['user', 'host', 'pro'],
+        enum: ['user', 'hostPro', 'admin'],
         required: true,
         default: 'user'
     },
@@ -65,7 +65,7 @@ const userSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'complaint',
         required: false
-    }],
+    }],*/
     host: {
         house_type: {
             type: String,
@@ -147,7 +147,7 @@ const userSchema = new mongoose.Schema({
             required: true,
             default: false
         }
-    }*/
+    }
 
 })
 
