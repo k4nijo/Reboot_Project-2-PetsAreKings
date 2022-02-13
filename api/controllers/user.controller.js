@@ -36,9 +36,13 @@ async function deleteUser(req, res) {
   }
 }
 
+
+
+
 module.exports = {
   getAllUsers,
   getOneUser,
   updateUser,
-  deleteUser
+  deleteUser,
+  //createPetIntoUser
 }

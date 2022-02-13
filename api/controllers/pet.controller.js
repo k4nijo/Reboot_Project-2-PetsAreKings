@@ -1,4 +1,5 @@
-const petModel = require('../models/pet.model')
+const PetModel = require('../models/pet.model')
+const UserModel = require('../models/user.model')
 
 async function getAllPets(req, res) {
   try {
@@ -36,9 +37,34 @@ async function deletePet(req, res) {
   }
 }
 
+async function createPet(req, res) {
+  try {
+      const user = await UserModel.findById(req.params.user_id)
+
+     if (user) {
+      const pet = req.body
+      const newPet = await Pets.create(pet)
+
+      user.pet.push(newPet._id)
+      await user.save()
+      res.send(newPet)
+
+     } else {
+         res.send('El usuario no existe')
+     }
+
+    } catch (error) {
+      res.status(500).send(`Request error: ${error}`)
+    }
+  }
+
+
+
+
 module.exports = {
   getAllPets,
   getOnePet,
   updatePet,
-  deletePet
+  deletePet,
+  createPet
 }
