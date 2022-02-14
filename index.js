@@ -10,7 +10,7 @@ const mongoose = require('mongoose')
     await mongoose.connect(process.env.MONGO_URL, {
       dbName: process.env.MONGO_DB
     })
-    console.log('Connected')
+    console.log('***Connected***')
   } catch (error) {
     console.error('Error connecting to DB')
     throw new Error (`Can't start Express: ${error}`)

@@ -42,14 +42,14 @@ const userSchema = new mongoose.Schema({
     location: {
         type: String
     },
-    /*pets: [{
+    pets: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'pet',
         required: false
     }],
     comments: [{
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'comment',
+        ref: 'comments',
         required: false
     }],
     bookings: [{
@@ -65,19 +65,19 @@ const userSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'complaint',
         required: false
-    }],*/
+    }],
     host: {
         house_type: {
             type: String,
-            required: true
+            required: false
         },
         address: {
             type: String,
-            require: true
+            require: false
         },
         accept_pet_specie: [{
             type: String,
-            require: true
+            require: false
         }],
         services: [{
             type: mongoose.Schema.Types.ObjectId,
@@ -87,19 +87,19 @@ const userSchema = new mongoose.Schema({
         }],
         available_dates: [{
             type: Boolean,
-            required: true,
+            required: false,
             default: false
         }],
         description: {
             type: String,
-            required: true
+            required: false
         },
         rating: [{
             type: Number
         }],
         verified: {
             type: Boolean,
-            required: true,
+            required: false,
             default: false
         }
     },
@@ -110,7 +110,7 @@ const userSchema = new mongoose.Schema({
         },
         professional_type: {
             type: String,
-            required: true
+            required: false
         },
         web: {
             type: String,
@@ -118,11 +118,11 @@ const userSchema = new mongoose.Schema({
         },
         address: {
             type: String,
-            required: true
+            required: false
         },
         accepted_pet_specie: [{
             type: String,
-            required: true
+            required: false
         }],
         services: [{
             type: mongoose.Schema.Types.ObjectId,
@@ -132,19 +132,19 @@ const userSchema = new mongoose.Schema({
         }],
         available_dates: [{
             type: Boolean,
-            required: true,
+            required: false,
             default: false
         }],
         description: {
             type: String,
-            required: true
+            required: false
         },
         rating: [{
             type: Number
         }],
         verified: {
             type: Boolean,
-            required: true,
+            required: false,
             default: false
         }
     }
@@ -155,5 +155,4 @@ const userSchema = new mongoose.Schema({
 
 const userModel = mongoose.model('user', userSchema)
 module.exports = userModel
-
 
