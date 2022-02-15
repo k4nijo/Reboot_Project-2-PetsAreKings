@@ -1,10 +1,11 @@
-const PetModel = require('../models/pet.model')
-const UserModel = require('../models/user.model')
+
+const Pet = require('../models/pet.model')
+const User = require('../models/user.model')
 
 async function getAllPets(req, res) {
   try {
-    const pets = await PetModel.find({} , { password: 0 })
-    res.status(200).json(pets)
+    const user = await User.findById(req.params.userid)
+    res.status(200).json(user.pets)
   } catch (error) {
     res.status(500).send(`Request Error: ${error}`)
   }
@@ -12,7 +13,10 @@ async function getAllPets(req, res) {
 
 async function getOnePet(req, res) {
   try {
-    const pet = await PetModel.findById(req.params.id, { password: 0 })
+    const user = await User.findById(req.params.userid).populate('pets')
+    const pet = user.pets.filter(function(pet){
+      return pet._id.toString() === req.params.petid 
+    }) 
     res.status(200).json(pet)
   } catch (error) {
     res.status(500).send(`Request Error: ${error}`)
@@ -21,7 +25,7 @@ async function getOnePet(req, res) {
 
 async function updatePet(req, res) {
   try {
-    const pet = await PetModel.findByIdAndUpdate(req.params.id, req.body, { password: 0, new: true })
+    const pet = await Pet.findByIdAndUpdate(req.params.petid, req.body, { new: true })
     res.status(200).json({message: `${pet.name}'s profile updated!`, pet })
   } catch (error) {
     res.status(500).send(`Request Error: ${error}`)
@@ -30,7 +34,10 @@ async function updatePet(req, res) {
 
 async function deletePet(req, res) {
   try {
-    const pet = await PetModel.findByIdAndDelete(req.params.id)
+    const user = await User.findById(req.params.userid)
+    user.pets.remove(req.params.petid)
+    user.save()
+    const pet = await Pet.findByIdAndDelete(req.params.petid)
     res.status(200).send(`${pet.name}'s profile deleted`)
   } catch (error) {
     res.status(500).send(`Request Error: ${error}`)
@@ -39,13 +46,13 @@ async function deletePet(req, res) {
 
 async function createPet(req, res) {
   try {
-      const user = await UserModel.findById(req.params.user_id)
+      const user = await User.findById(req.params.userid)
 
      if (user) {
       const pet = req.body
-      const newPet = await Pets.create(pet)
+      const newPet = await Pet.create(pet)
 
-      user.pet.push(newPet._id)
+      user.pets.push(newPet._id)
       await user.save()
       res.send(newPet)
 

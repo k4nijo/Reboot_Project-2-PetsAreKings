@@ -1,8 +1,8 @@
 const router = require('express').Router()
 const { ownProfile, updateProfile } = require('../controllers/profile.controller')
-const { checkAuth } = require('../utils')
+const { authUser } = require('../utils')
 
-router.get('/', checkAuth, ownProfile)
-router.put('/', checkAuth, updateProfile)
+router.get('/', authUser, ownProfile)
+router.put('/', authUser, updateProfile)
 
 module.exports = router

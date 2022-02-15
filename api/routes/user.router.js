@@ -1,50 +1,34 @@
-<<<<<<< HEAD
 const router = require('express').Router()
 
 const{
   authUser,
-} = requiere('../utils')
+} = require('../utils')
 
 const {
   getAllUsers,
   getOneUser,
+  updateUser,
   deleteUser,
-  updateUser
 } = require('../controllers/user.controller')
 
 router.get('/', getAllUsers)
 router.get('/:id', getOneUser)
-router.delete('/:id', deleteUser)
 router.put('/:id', updateUser)
+router.delete('/:id', deleteUser)
 
 const {
+  getAllPets,
+  getOnePet,
   createPet,
+  updatePet,
+  deletePet
 } =require('../controllers/pet.controller')
 
-router.post('/:user_id/pets', authUser, createPet)
-
-=======
-const router = require('express').Router()
-
-const {
-  authUser,
-  checkAdmin,
-  checkHostPro
-} = require ('../utils')
-
-const {
-  getAllUsers,
-  getOneUser,
-  deleteUser,
-  updateUser
-} = require('../controllers/user.controller')
-
-router.get('/', getAllUsers)
-router.get('/profile/:id', getOneUser)
-router.delete('/profile/:id', deleteUser)
-router.put('/profile/:id', updateUser)
-router.delete('/:id', authUser, checkAdmin, deleteUser)
+router.get('/:userid/pets', authUser, getAllPets)
+router.get('/:userid/pets/:petid', authUser, getOnePet )
+router.put('/:userid/pets/:petid', authUser, updatePet)
+router.post('/:userid/pets', authUser, createPet)
+router.delete('/:userid/pets/:petid', authUser, deletePet)
 
 
->>>>>>> ebb0be83f8bb81d6e335df5cb4806a9761e6b41d
 module.exports = router

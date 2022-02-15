@@ -19,17 +19,18 @@ const mongoose = require('mongoose')
 
 })()
 
-const app = express()
+const app = express() 
 
 try  {
   app
     .use(cors())
     .use(morgan('dev'))
     .use(express.json())
+    .use(express.static('public'))
     .use('/api', require('./api/routes'))
   
     .listen(process.env.PORT, () => {
-      console.info('💻 Server Live')
+      console.info('💻 Reboot Server Live')
       console.info(`📡 PORT: http://localhost:${process.env.PORT}`)
     })
 } catch (error) {

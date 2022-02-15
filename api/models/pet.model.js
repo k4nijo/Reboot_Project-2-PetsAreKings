@@ -16,7 +16,7 @@ const petSchema = new mongoose.Schema ({
     },
     age: {
         type: Number,
-        require: false
+        required: false
     },
     sociable: {
         type: Boolean,

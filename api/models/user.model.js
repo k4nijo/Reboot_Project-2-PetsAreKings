@@ -36,7 +36,7 @@ const userSchema = new mongoose.Schema({
     role: {
         type: String,
         enum: ['user', 'hostPro', 'admin'],
-        required: true,
+        required: false,
         default: 'user'
     },
     location: {
@@ -69,15 +69,15 @@ const userSchema = new mongoose.Schema({
     host: {
         house_type: {
             type: String,
-            required: true
+            required: false
         },
         address: {
             type: String,
-            require: true
+            required: false
         },
         accept_pet_specie: [{
             type: String,
-            require: true
+            required: false
         }],
         services: [{
             type: mongoose.Schema.Types.ObjectId,
@@ -87,19 +87,17 @@ const userSchema = new mongoose.Schema({
         }],
         available_dates: [{
             type: Boolean,
-            required: true,
             default: false
         }],
         description: {
             type: String,
-            required: true
+            required: false
         },
         rating: [{
             type: Number
         }],
         verified: {
             type: Boolean,
-            required: true,
             default: false
         }
     },
@@ -110,7 +108,7 @@ const userSchema = new mongoose.Schema({
         },
         professional_type: {
             type: String,
-            required: true
+            required: false
         },
         web: {
             type: String,
@@ -118,11 +116,11 @@ const userSchema = new mongoose.Schema({
         },
         address: {
             type: String,
-            required: true
+            required: false
         },
         accepted_pet_specie: [{
             type: String,
-            required: true
+            required: false
         }],
         services: [{
             type: mongoose.Schema.Types.ObjectId,
@@ -132,19 +130,17 @@ const userSchema = new mongoose.Schema({
         }],
         available_dates: [{
             type: Boolean,
-            required: true,
             default: false
         }],
         description: {
             type: String,
-            required: true
+            required: false
         },
         rating: [{
             type: Number
         }],
         verified: {
             type: Boolean,
-            required: true,
             default: false
         }
     }
