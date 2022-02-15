@@ -3,18 +3,25 @@ const UserModel = require('../models/user.model')
 
 
 function authUser (req, res, next) {
-  if (!req.headers.token) {
-    res.status(403).json({ error: 'No Token found' })
-  } else {
-    jwt.verify(req.headers.token, process.env.SECRET, (err, token) => {
-      if (err) { res.status(403).json({ error: 'Token not valid' }) }
-      UserModel.findOne({ email: token.email })
-        .then(user => {
-          res.locals.user = user
-          next()
-        })
-    })
+  try {
+    if (!req.headers.token) {
+      return res.status(403).json({ error: 'No Token found' })
+    } else {
+      jwt.verify(req.headers.token, process.env.SECRET, (err, token) => {
+        if (err) { return res.status(403).json({ error: 'Token not valid' }) }
+        UserModel.findOne({ email: token.email })
+          .then(user => {
+            res.locals.user = user
+            next()
+          })
+      })
+    }
+    
+  } catch (error) {
+    console.log(error)
+    
   }
+  
 }
 
 function checkAdmin (req, res, next) {
