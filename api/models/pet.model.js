@@ -1,18 +1,18 @@
 
 const mongoose = require('mongoose')
 
-const petSchema = new mongoose.Schema ({
+const petSchema = new mongoose.Schema({
     name: {
-     type: String,
-     required: true
+        type: String,
+        required: true
     },
     pet_specie: {
-      type: String,
-      required: true
+        type: String,
+        required: true
     },
     race: {
-      type: String,
-      required: false
+        type: String,
+        required: false
     },
     age: {
         type: Number,
@@ -37,14 +37,12 @@ const petSchema = new mongoose.Schema ({
         required: false
     }],
     createdAt: {
-        type: Date, 
+        type: Date,
         default: Date.now(),
         required: [true, 'Date is required']
     }
-    
 
 })
-
 
 
 const petModel = mongoose.model('pet', petSchema)

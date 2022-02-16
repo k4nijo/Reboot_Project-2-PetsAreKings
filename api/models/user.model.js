@@ -47,9 +47,9 @@ const userSchema = new mongoose.Schema({
         ref: 'pet',
         required: false
     }],
-    /*comments: [{
+    comments: [{
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'comment',
+        ref: 'comments',
         required: false
     }],
     bookings: [{
@@ -73,11 +73,11 @@ const userSchema = new mongoose.Schema({
         },
         address: {
             type: String,
-            required: false
+            require: false
         },
         accept_pet_specie: [{
             type: String,
-            required: false
+            require: false
         }],
         services: [{
             type: mongoose.Schema.Types.ObjectId,
@@ -85,10 +85,17 @@ const userSchema = new mongoose.Schema({
             required: false,
             price: Number
         }],
-        available_dates: [{
-            type: Boolean,
-            default: false
-        }],
+
+        available_dates: {
+            from_date: {
+                type: Date,
+                required: false,
+            },
+            to_date: {
+                type: Date,
+                required: false,
+            }
+        },
         description: {
             type: String,
             required: false
@@ -98,6 +105,7 @@ const userSchema = new mongoose.Schema({
         }],
         verified: {
             type: Boolean,
+            required: false,
             default: false
         }
     },
@@ -128,10 +136,16 @@ const userSchema = new mongoose.Schema({
             required: false,
             price: Number
         }],
-        available_dates: [{
-            type: Boolean,
-            default: false
-        }],
+        available_dates: {
+            from_date: {
+                type: Date,
+                required: false,
+            },
+            to_date: {
+                type: Date,
+                required: false,
+            }
+        },
         description: {
             type: String,
             required: false
@@ -141,15 +155,12 @@ const userSchema = new mongoose.Schema({
         }],
         verified: {
             type: Boolean,
+            required: false,
             default: false
         }
     }
 
 })
 
-
-
 const userModel = mongoose.model('user', userSchema)
 module.exports = userModel
-
-

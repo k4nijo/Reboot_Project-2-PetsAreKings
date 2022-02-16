@@ -14,9 +14,9 @@ async function getAllPets(req, res) {
 async function getOnePet(req, res) {
   try {
     const user = await User.findById(req.params.userid).populate('pets')
-    const pet = user.pets.filter(function(pet){
-      return pet._id.toString() === req.params.petid 
-    }) 
+    const pet = user.pets.filter(function (pet) {
+      return pet._id.toString() === req.params.petid
+    })
     res.status(200).json(pet)
   } catch (error) {
     res.status(500).send(`Request Error: ${error}`)
@@ -26,7 +26,7 @@ async function getOnePet(req, res) {
 async function updatePet(req, res) {
   try {
     const pet = await Pet.findByIdAndUpdate(req.params.petid, req.body, { new: true })
-    res.status(200).json({message: `${pet.name}'s profile updated!`, pet })
+    res.status(200).json({ message: `${pet.name}'s profile updated!`, pet })
   } catch (error) {
     res.status(500).send(`Request Error: ${error}`)
   }
@@ -46,9 +46,9 @@ async function deletePet(req, res) {
 
 async function createPet(req, res) {
   try {
-      const user = await User.findById(req.params.userid)
+    const user = await User.findById(req.params.userid)
 
-     if (user) {
+    if (user) {
       const pet = req.body
       const newPet = await Pet.create(pet)
 
@@ -56,14 +56,14 @@ async function createPet(req, res) {
       await user.save()
       res.send(newPet)
 
-     } else {
-         res.send('El usuario no existe')
-     }
-
-    } catch (error) {
-      res.status(500).send(`Request error: ${error}`)
+    } else {
+      res.send('El usuario no existe')
     }
+
+  } catch (error) {
+    res.status(500).send(`Request error: ${error}`)
   }
+}
 
 
 
