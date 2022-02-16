@@ -36,7 +36,7 @@ const userSchema = new mongoose.Schema({
     role: {
         type: String,
         enum: ['user', 'hostPro', 'admin'],
-        required: true,
+        required: false,
         default: 'user'
     },
     location: {
@@ -47,7 +47,7 @@ const userSchema = new mongoose.Schema({
         ref: 'pet',
         required: false
     }],
-    comments: [{
+    /*comments: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'comments',
         required: false
@@ -73,11 +73,13 @@ const userSchema = new mongoose.Schema({
         },
         address: {
             type: String,
+<<<<<<< HEAD
             require: false
         },
         accept_pet_specie: [{
             type: String,
             require: false
+>>>>>>> 4186bb96378b18f54da6ecd5c7f60cff1dad633c
         }],
         services: [{
             type: mongoose.Schema.Types.ObjectId,
@@ -85,6 +87,7 @@ const userSchema = new mongoose.Schema({
             required: false,
             price: Number
         }],
+<<<<<<< HEAD
         available_dates: {
             from_date: {
                 type: Date,
@@ -95,6 +98,7 @@ const userSchema = new mongoose.Schema({
                 required: false,
             }
         },
+>>>>>>> 4186bb96378b18f54da6ecd5c7f60cff1dad633c
         description: {
             type: String,
             required: false
@@ -104,7 +108,10 @@ const userSchema = new mongoose.Schema({
         }],
         verified: {
             type: Boolean,
+<<<<<<< HEAD
             required: false,
+=======
+>>>>>>> 4186bb96378b18f54da6ecd5c7f60cff1dad633c
             default: false
         }
     },
@@ -135,6 +142,7 @@ const userSchema = new mongoose.Schema({
             required: false,
             price: Number
         }],
+<<<<<<< HEAD
         available_dates: {
             from_date: {
                 type: Date,
@@ -145,6 +153,12 @@ const userSchema = new mongoose.Schema({
                 required: false,
             }
         },
+=======
+        available_dates: [{
+            type: Boolean,
+            default: false
+        }],
+>>>>>>> 4186bb96378b18f54da6ecd5c7f60cff1dad633c
         description: {
             type: String,
             required: false
@@ -154,7 +168,10 @@ const userSchema = new mongoose.Schema({
         }],
         verified: {
             type: Boolean,
+<<<<<<< HEAD
             required: false,
+=======
+>>>>>>> 4186bb96378b18f54da6ecd5c7f60cff1dad633c
             default: false
         }
     }
