@@ -2,7 +2,7 @@ const jwt = require('jsonwebtoken')
 const UserModel = require('../models/user.model')
 
 
-function authUser (req, res, next) {
+function authUser(req, res, next) {
   try {
     if (!req.headers.token) {
       return res.status(403).json({ error: 'No Token found' })
@@ -16,25 +16,27 @@ function authUser (req, res, next) {
           })
       })
     }
-    
+
   } catch (error) {
     console.log(error)
-    
-  }
-  
-}
-
-function checkAdmin (req, res, next) {
-  if (res.locals.user.role !== 'admin') { 
-    res.status(403).json({ error: 'User not authorized'}) 
-  } else {
-    next()
   }
 }
 
-function checkHostPro (req, res, next) {
-  if (res.locals.user.role !== 'hostPro') { 
-    res.status(403).json({ error: 'User not authorized'}) 
+function checkAdmin(req, res, next) {
+  try {
+    if (res.locals.user.role !== 'admin') {
+      res.status(403).json({ error: 'User not authorized' })
+    } else {
+      next()
+     }
+  } catch (error) {
+
+  }
+}
+
+function checkHostPro(req, res, next) {
+  if (res.locals.user.role !== 'hostPro') {
+    res.status(403).json({ error: 'User not authorized' })
   } else {
     next()
   }
