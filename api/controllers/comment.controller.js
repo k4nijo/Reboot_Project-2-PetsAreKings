@@ -4,7 +4,7 @@ const User = require('../models/user.model')
 
 async function getAllComments(req, res) {
   try {
-    const user = await User.findById(req.params.userid)
+    const user = await User.findById(req.params.userid).populate("comments")
     res.status(200).json(user.comments)
   } catch (error) {
     res.status(500).send(`Request error: ${error}`)
