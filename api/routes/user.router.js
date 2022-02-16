@@ -25,6 +25,8 @@ const {
   deleteService
 } = require ('../controllers/service.controller')
 
+const { createBooking } = require('../controllers/booking.controller')
+
 router.get('/', getAllUsers)
 router.get('/profile/:id', getOneUser)
 router.get('/:user_id/comments',authUser, getAllComments),
@@ -34,7 +36,7 @@ router.delete('/profile/:id', deleteUser)
 router.delete('/:id', authUser, checkAdmin, deleteUser)
 
 router.post('/:user_id/services', authUser, createService);
-
+router.post('/:host_id/booking', authUser, createBooking), 
 
 router.post('/:user_id/comments', authUser, createComment);
 //router.delete('/:user_id/services/:id', authUser, deleteService);

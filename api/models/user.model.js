@@ -85,11 +85,16 @@ const userSchema = new mongoose.Schema({
             required: false,
             price: Number
         }],
-        available_dates: [{
-            type: Boolean,
-            required: false,
-            default: false
-        }],
+        available_dates: {
+            from_date: {
+                type: Date,
+                required: false,
+            },
+            to_date: {
+                type: Date,
+                required: false,
+            }
+        },
         description: {
             type: String,
             required: false
@@ -130,11 +135,16 @@ const userSchema = new mongoose.Schema({
             required: false,
             price: Number
         }],
-        available_dates: [{
-            type: Boolean,
-            required: false,
-            default: false
-        }],
+        available_dates: {
+            from_date: {
+                type: Date,
+                required: false,
+            },
+            to_date: {
+                type: Date,
+                required: false,
+            }
+        },
         description: {
             type: String,
             required: false
