@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 
-const complaintSchema = new mongoose.Schema ({
-    reported:{
+const complaintSchema = new mongoose.Schema({
+    reported: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'user',
         required: false

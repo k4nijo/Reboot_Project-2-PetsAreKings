@@ -3,48 +3,48 @@ const User = require('../models/user.model')
 
 
 async function getComplaints(req, res) {
-    try {
-      const user = await User.findById(req.params.userid)
-      res.status(200).json(user.complaints)
-    } catch (error) {
-      res.status(500).send(`Request Error: ${error}`)
-    }
+  try {
+    const user = await User.findById(req.params.userid)
+    res.status(200).json(user.complaints)
+  } catch (error) {
+    res.status(500).send(`Request Error: ${error}`)
   }
+}
 
 
 async function addComplaint(req, res) {
-    try {
-      const user = await User.findById(req.params.userid)
-      
-      if (user) {
-       const complaint = req.body
-       const newComplaint = await Complaint.create(complaint)
+  try {
+    const user = await User.findById(req.params.userid)
 
-       user.complaints.push(newComplaint._id)
-       await user.save()
-       res.send(newComplaint)
-          
+    if (user) {
+      const complaint = req.body
+      const newComplaint = await Complaint.create(complaint)
+
+      user.complaints.push(newComplaint._id)
+      await user.save()
+      res.send(newComplaint)
+
     } else {
-        res.send('the complaint does not exist')
+      res.send('the complaint does not exist')
     }
-   
-   } catch (error) {
-       res.status(500).send(`Request error: ${error}`)
-   }
+
+  } catch (error) {
+    res.status(500).send(`Request error: ${error}`)
+  }
 
 }
 
 async function deleteComplaint(req, res) {
-    try {
-      const user = await User.findById(req.params.userid)
-      user.complaints.remove(req.params.complaintid)
-      user.save()
-      const complaint = await Complaint.findByIdAndDelete(req.params.complaintid)
-      res.status(200).send(`${complaint.complaint}'s profile deleted`)
-    
-   } catch (error) {
-       res.status(500).send(`Request Error: ${error}`)
-   }
+  try {
+    const user = await User.findById(req.params.userid)
+    user.complaints.remove(req.params.complaintid)
+    user.save()
+    const complaint = await Complaint.findByIdAndDelete(req.params.complaintid)
+    res.status(200).send(`${complaint.complaint}'s profile deleted`)
+
+  } catch (error) {
+    res.status(500).send(`Request Error: ${error}`)
+  }
 }
 
 
@@ -55,10 +55,10 @@ async function deleteComplaint(req, res) {
 
 
 module.exports = {
-    getComplaints,
-    addComplaint,
-    deleteComplaint
-  }
+  getComplaints,
+  addComplaint,
+  deleteComplaint
+}
 
 
 
