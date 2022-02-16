@@ -21,7 +21,6 @@ const complaintSchema = new mongoose.Schema({
         default: false
     }
 
-
 })
 
 

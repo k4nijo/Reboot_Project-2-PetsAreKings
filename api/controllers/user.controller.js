@@ -30,13 +30,11 @@ async function updateUser(req, res) {
 async function deleteUser(req, res) {
   try {
     const user = await User.findByIdAndDelete(req.params.id)
-    res.status(200).send(`${user.name}'s profile deleted`)
+    res.status(200).send(`User profile deleted`)
   } catch (error) {
     res.status(500).send(`Request Error: ${error}`)
   }
 }
-
-
 
 
 module.exports = {

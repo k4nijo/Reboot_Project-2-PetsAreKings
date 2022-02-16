@@ -40,18 +40,12 @@ async function deleteComplaint(req, res) {
     user.complaints.remove(req.params.complaintid)
     user.save()
     const complaint = await Complaint.findByIdAndDelete(req.params.complaintid)
-    res.status(200).send(`${complaint.complaint}'s profile deleted`)
+    res.status(200).send(`Complaint deleted`)
 
   } catch (error) {
     res.status(500).send(`Request Error: ${error}`)
   }
 }
-
-
-
-
-
-
 
 
 module.exports = {

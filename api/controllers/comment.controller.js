@@ -4,7 +4,7 @@ const User = require('../models/user.model')
 
 async function getAllComments(req, res) {
   try {
-    const user = await User.findById(req.params.user_id)
+    const user = await User.findById(req.params.userid)
     res.status(200).json(user.comments)
   } catch (error) {
     res.status(500).send(`Request error: ${error}`)
@@ -13,7 +13,7 @@ async function getAllComments(req, res) {
 
 async function createComment(req, res) {
   try {
-    const user = await User.findById(req.params.user_id)
+    const user = await User.findById(req.params.userid)
 
     if (user) {
       const comment = req.body
@@ -35,10 +35,11 @@ async function createComment(req, res) {
 
 async function deleteComment(req, res) {
   try {
-    const user = await User.findById(req.params.id)
-    user.comments.remove(req.params.id)
+    const user = await User.findById(req.params.userid)
+    user.comments.remove(req.params.commentid)
     user.save()
-    res.status(500).send(`Commnet deleted`)
+    const comment = await Comment.findByIdAndDelete(req.params.commentid)
+    res.status(200).send(`Comment deleted`)
 
   } catch (error) {
     res.status(500).send(`Request error: ${error}`)
