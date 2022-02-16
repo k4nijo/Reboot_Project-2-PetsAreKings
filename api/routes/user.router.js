@@ -62,5 +62,15 @@ router.post('/:host_id/booking', authUser, createBooking),
 //router.delete('/:user_id/services/:id', authUser, deleteService);
 router.delete('/:user_id/comments/:id', authUser, deleteComment);
 
+const {
+  getComplaints,
+  addComplaint,
+  deleteComplaint
+} =require('../controllers/complaint.controller')
+
+router.get('/:userid/complaints', authUser, getComplaints)
+router.post('/:userid/complaints', authUser, addComplaint)
+router.delete('/:userid/complaints/:complaint', authUser, checkAdmin, deleteComplaint)
+
 
 module.exports = router
