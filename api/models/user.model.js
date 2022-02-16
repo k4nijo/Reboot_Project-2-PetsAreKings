@@ -60,12 +60,12 @@ const userSchema = new mongoose.Schema({
     pictures: [{
         type: String,
         required: false
-    }],
+    }],*/
     complaints: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'complaint',
         required: false
-    }],*/
+    }],
     host: {
         house_type: {
             type: String,
