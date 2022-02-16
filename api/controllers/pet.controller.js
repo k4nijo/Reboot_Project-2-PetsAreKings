@@ -4,7 +4,7 @@ const User = require('../models/user.model')
 
 async function getAllPets(req, res) {
   try {
-    const user = await User.findById(req.params.userid)
+    const user = await User.findById(req.params.userid).populate('pets')
     console.log(user)
     res.status(200).json(user.pets)
   } catch (error) {
