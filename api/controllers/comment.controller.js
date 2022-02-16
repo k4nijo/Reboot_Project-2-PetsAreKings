@@ -11,35 +11,26 @@ async function getAllComments(req, res) {
   }
 }
 
-/*async function getOneComment(req, res) {
+async function createComment(req, res) {
   try {
-    const comments = await Comment.findById(req.params.id)
-    res.status(200).json(comments)
+    const user = await User.findById(req.params.user_id)
+
+    if (user) {
+      const comment = req.body
+      const newComment = await Comment.create(comment)
+
+      user.comments.push(newComment._id)
+      await user.save()
+      res.send(newComment)
+
+    } else {
+      res.send(`El usuario no existe`)
+    }
+
   } catch (error) {
     res.status(500).send(`Request error: ${error}`)
   }
-}*/
-
-async function createComment(req, res) {
-    try {
-        const user = await User.findById(req.params.user_id)
-       
-       if (user) {
-        const comment = req.body
-        const newComment = await Comment.create(comment)
-       
-        user.comments.push(newComment._id)
-        await user.save()
-        res.send(newComment)
-
-       } else {
-           res.send(`El usuario no existe`)
-       }
-     
-      } catch (error) {
-        res.status(500).send(`Request error: ${error}`)
-      }
-    }
+}
 
 
 async function deleteComment(req, res) {
@@ -56,7 +47,6 @@ async function deleteComment(req, res) {
 
 module.exports = {
   getAllComments,
-  //getOneComment,
   createComment,
   deleteComment
 }

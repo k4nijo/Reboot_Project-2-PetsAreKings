@@ -12,24 +12,24 @@ async function getAllServices(req, res) {
 }
 
 async function createService(req, res) {
-    try {
-       const user = await User.findById(req.params.user_id)
-       if (user) {
-        const service = req.body
-        const newService = await Services.create(service)
-       
-        user.services.push(newService._id)
-        await user.save()
-        res.send(newService)
+  try {
+    const user = await User.findById(req.params.user_id)
+    if (user) {
+      const service = req.body
+      const newService = await Services.create(service)
 
-       } else {
-           res.send(`El usuario no existe`)
-       }
-     
-      } catch (error) {
-        res.status(500).send(`Request error: ${error}`)
+      user.services.push(newService._id)
+      await user.save()
+      res.send(newService)
+
+    } else {
+      res.send(`El usuario no existe`)
     }
- }
+
+  } catch (error) {
+    res.status(500).send(`Request error: ${error}`)
+  }
+}
 
 
 async function deleteService(req, res) {
